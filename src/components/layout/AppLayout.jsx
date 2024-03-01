@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Layout, Spin } from "antd";
 import { AppHeader } from "./AppHeader";
 import { AppSider } from "./AppSider";
@@ -7,6 +7,13 @@ import { CryptoContext } from "../../context/crypto-context";
 
 export const AppLayout = () => {
   const { loading } = useContext(CryptoContext);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, []);
 
   if (loading) return <Spin fullscreen />;
 
@@ -14,7 +21,7 @@ export const AppLayout = () => {
     <Layout>
       <AppHeader />
       <Layout>
-        <AppSider />
+        {windowWidth > 1000 && <AppSider />}
         <AppContent />
       </Layout>
     </Layout>

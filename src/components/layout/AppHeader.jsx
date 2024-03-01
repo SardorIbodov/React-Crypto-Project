@@ -42,7 +42,7 @@ export const AppHeader = () => {
         onSelect={handleSelect}
         onClick={() => setSelect((prev) => !prev)}
         style={{
-          width: "250px",
+          width: "200px",
         }}
         open={select}
         value="press / to open"
